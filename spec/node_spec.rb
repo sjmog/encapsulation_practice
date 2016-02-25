@@ -6,10 +6,10 @@ describe Node do
   end
 
   before do
-    b > c > d > e > b > f > h
-    b > a
-    c > d
-    c > e
+    b > [c, 4] > [d, 5] > [e, 2] > [b, 3] > [f, 8] > [h, 9]
+    b > [a, 7]
+    c > [d, 1]
+    c > [e, 6]
   end
 
   it 'reaches connected nodes' do
@@ -103,5 +103,11 @@ describe Node do
     expect(b.hop_count(d)).to eq 2
     expect(b.hop_count(e)).to eq 2
     expect(c.hop_count(f)).to eq 3
+  end
+
+  it 'returns costs between nodes' do
+    expect(b.cost(b)).to eq 0
+    expect(b.cost(c)).to eq 4
+    expect(b.cost(h)).to eq 17
   end
 end
