@@ -96,4 +96,12 @@ describe Node do
     expect(h.reach?(g)).to be false
     expect(h.reach?(h)).to be true
   end
+
+  it 'counts hops between nodes' do
+    expect(b.hop_count(b)).to eq 0
+    expect(b.hop_count(c)).to eq 1
+    expect(b.hop_count(d)).to eq 2
+    expect(b.hop_count(e)).to eq 2
+    expect(c.hop_count(f)).to eq 3
+  end
 end
